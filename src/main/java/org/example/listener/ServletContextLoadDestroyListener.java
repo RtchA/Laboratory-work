@@ -1,5 +1,6 @@
 package org.example.listener;
 
+import com.google.gson.Gson;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
@@ -19,10 +20,11 @@ public class ServletContextLoadDestroyListener implements ServletContextListener
     public void contextInitialized(ServletContextEvent sce) {
         final ServletContext servletContext = sce.getServletContext();
         final UserManager userManager = new UserManager();
-        final UserController userController = new UserController(userManager);
+        final UserController userController = new UserController(userManager, new Gson());
         final Map<String, WebHandler> handlers = Map.of(
                 "/users.getAll", userController::getAll,
-                "/users.getById", userController::getById
+                "/users.getById", userController::getById,
+               "/users.create", userController::create
         );
         servletContext.setAttribute(ContextAttributes.HANDLERS_CONTEXT_ATTR, handlers);
     }

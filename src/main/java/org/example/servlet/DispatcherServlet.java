@@ -13,7 +13,7 @@ import org.example.handler.WebHandler;
 import java.io.IOException;
 import java.util.Map;
 
-@WebServlet (value="/hi", loadOnStartup = 1)
+@WebServlet (value="/", loadOnStartup = 1)
 @Slf4j
 public class DispatcherServlet extends HttpServlet {
     private Map<String, WebHandler> handlers;
@@ -23,8 +23,6 @@ public class DispatcherServlet extends HttpServlet {
         handlers = (Map<String, WebHandler>) getServletContext().getAttribute(ContextAttributes.HANDLERS_CONTEXT_ATTR);
     }
 
-    //    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
-//        res.getWriter().write("Hello");
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String path = req.getRequestURI().substring(req.getContextPath().length());
