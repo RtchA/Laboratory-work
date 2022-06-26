@@ -29,4 +29,14 @@ public class UserManager {
         users.add(user);
         return user;
     }
+
+    public UserDTO deleteById(final long id) {
+        for (UserDTO user : users){
+            if (user.getId()==id){
+                users.remove(user);
+            }
+            return user;
+        }
+        throw new UserNotFoundException();
+    }
 }

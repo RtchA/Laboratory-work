@@ -24,7 +24,8 @@ public class ServletContextLoadDestroyListener implements ServletContextListener
         final Map<String, WebHandler> handlers = Map.of(
                 "/users.getAll", userController::getAll,
                 "/users.getById", userController::getById,
-               "/users.create", userController::create
+               "/users.create", userController::create,
+                "/users.deleteById", userController::deleteById
         );
         servletContext.setAttribute(ContextAttributes.HANDLERS_CONTEXT_ATTR, handlers);
     }

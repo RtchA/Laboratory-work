@@ -34,4 +34,10 @@ public class UserController {
         UserDTO responseDTO = manager.create(req.getParameter("name"));
         res.getWriter().write(gson.toJson(responseDTO));
     }
+
+    public void deleteById(final HttpServletRequest req, final HttpServletResponse res) throws ServletException, IOException {
+        final long id = Long.parseLong(req.getParameter("id"));
+        UserDTO responseDTO = manager.deleteById(id);
+        res.getWriter().write(gson.toJson(responseDTO));
+    }
 }
